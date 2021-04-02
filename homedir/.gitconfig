@@ -1,6 +1,9 @@
 [user]
   name = GITHUBFULLNAME
   email = GITHUBEMAIL
+[wrgit]
+  username = WRGITUSERNAME
+  autoupdate = true
 [github]
   # https://github.com/blog/180-local-github-config
   user = GITHUBUSER
@@ -161,6 +164,7 @@
   prompt = false
 
 [diff]
+  renamelimit = 0
   tool = vimdiff
 
 [init]
@@ -178,7 +182,7 @@
 
 [branch]
     # Automatically set up pull to be --rebase
-    # autosetuprebase = always
+    autosetuprebase = always
 
 [credential]
     # cache creds (git help credential-cache)
@@ -186,6 +190,9 @@
 
 [filter "tabspace"]
   clean = expand -t 4
+
+[pull]
+  rebase = true
 
 [push]
   default = matching
@@ -200,3 +207,6 @@
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f
   required = true
+
+[sendemail]
+  suppresscc = all
