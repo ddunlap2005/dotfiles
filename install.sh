@@ -104,8 +104,26 @@ if [[ $? = 0 ]]; then
     fi
   fi
 
+  wrgitusername=$whoami
+  grep 'username = WRGITUSERNAME' ./homedir/.gitconfig > /dev/null 2>&1
+  if [[ $? = 0 ]]; then
+    if [[ ! "$wrgitusername" ]]; then
+      response='n'
+    else
+      echo -e "I see that your wrgit username is $COL_YELLOW$wrgitusername$COL_RESET"
+      read -r -p "Is this correct? [Y/n] " reponse
+    fi
 
-  running "replacing items in .gitconfig with your info ($COL_YELLOW$fullname, $email, $githubuser$COL_RESET)"
+    if [[ $response =~ ^(no|n|N) ]]; then
+      read -r -p "What is your wrgitusername? " wrgitusername
+      if [[ ! $wrgitusername ]]; then
+        error "you must provide an wrgitusername to configure .gitconfig"
+        exit 1
+      fi
+    fi
+  fi
+
+  running "replacing items in .gitconfig with your info ($COL_YELLOW$fullname, $email, $githubuser, $wrgitusername$COL_RESET)"
 
   # test if gnu-sed or MacOS sed
 
@@ -116,12 +134,14 @@ if [[ $? = 0 ]]; then
     sed -i '' "s/GITHUBFULLNAME/$firstname $lastname/" ./homedir/.gitconfig
     sed -i '' 's/GITHUBEMAIL/'$email'/' ./homedir/.gitconfig
     sed -i '' 's/GITHUBUSER/'$githubuser'/' ./homedir/.gitconfig
+    sed -i '' 's/WRGITUSERNAME/'$wrgitusername'/' ./homedir/.gitconfig
     ok
   else
     echo
     bot "looks like you are already using gnu-sed. woot!"
     sed -i 's/GITHUBEMAIL/'$email'/' ./homedir/.gitconfig
     sed -i 's/GITHUBUSER/'$githubuser'/' ./homedir/.gitconfig
+    sed -i 's/WRGITUSERNAME/'$wrgitusername'/' ./homedir/.gitconfig
   fi
 fi
 
