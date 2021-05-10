@@ -40,6 +40,7 @@ module.exports = {
     'nmap',
     // 'openconnect',
     'p7zip',
+    'pandoc',
     'reattach-to-user-namespace',
     // better/more recent version of screen
     'homebrew/dupes/screen',
@@ -93,6 +94,7 @@ module.exports = {
     //'micro-snitch',
     // 'signal',
     //'macvim',
+    'mactex',
     'messenger',
     'microsoft-office',
     'microsoft-remote-desktop',
@@ -106,7 +108,6 @@ module.exports = {
     //'sketchup',
     'slack',
     'sonos',
-    'sourcetree',
     'steam',
     'sublime-text',
     'the-unarchiver',
