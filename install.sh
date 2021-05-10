@@ -316,6 +316,7 @@ if [[ $response =~ (y|yes|Y) ]];then
   ok
 fi
 
+brew tap adoptopenjdk/openjdk
 
 # if [[ -d "/Library/Ruby/Gems/2.0.0" ]]; then
 #   running "Fixing Ruby Gems Directory Permissions"
@@ -1219,6 +1220,6 @@ for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
   killall "${app}" > /dev/null 2>&1
 done
 
-brew update && brew upgrade && brew cleanup 
+brew update && brew upgrade && brew cleanup
 
 bot "Woot! All done"
