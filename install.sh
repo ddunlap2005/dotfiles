@@ -316,6 +316,7 @@ if [[ $response =~ (y|yes|Y) ]];then
   ok
 fi
 
+brew tap adoptopenjdk/openjdk
 
 # if [[ -d "/Library/Ruby/Gems/2.0.0" ]]; then
 #   running "Fixing Ruby Gems Directory Permissions"
