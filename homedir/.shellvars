@@ -2,6 +2,10 @@
 export EDITOR="vim"
 bindkey -v
 
+# Fix HOME and END keys
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+
 #########################################################################
 # Temporary aliases useful for demos, other current projects
 #########################################################################

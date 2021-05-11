@@ -41,6 +41,7 @@ module.exports = {
     'openconnect',
     'p7zip',
     'pandoc',
+    'pyenv',
     'reattach-to-user-namespace',
     // better/more recent version of screen
     'homebrew/dupes/screen',
