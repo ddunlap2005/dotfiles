@@ -1,0 +1,22 @@
+// SublimeLinter Settings - User
+{
+    "linters": {
+        "flake8": {
+            "args": [
+                "--max-line-length=100"
+            ]
+        },
+        "pycodestyle": {
+            "args": [
+                "--max-line-length=100"
+            ]
+        }
+    },
+    "paths": {
+        "linux": [],
+        "osx": [
+            "~/.pyenv/shims"
+        ],
+        "windows": []
+    }
+}
