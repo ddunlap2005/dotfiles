@@ -318,7 +318,10 @@ if [[ $response =~ (y|yes|Y) ]];then
   ok
 fi
 
+# Needed for adoptjdk
 brew tap adoptopenjdk/openjdk
+# Needed for sonos
+brew tap homebrew/cask-drivers
 ok
 
 # if [[ -d "/Library/Ruby/Gems/2.0.0" ]]; then
