@@ -207,11 +207,13 @@ running "checking homebrew..."
 brew_bin=$(which brew) 2>&1 > /dev/null
 if [[ $? != 0 ]]; then
   action "installing homebrew"
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  #ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   if [[ $? != 0 ]]; then
     error "unable to install homebrew, script $0 abort!"
     exit 2
   fi
+  eval "$(/opt/homebrew/bin/brew shellenv)"
   brew analytics off
 else
   ok
@@ -243,11 +245,11 @@ RUBY_CONFIGURE_OPTS="--with-openssl-dir=`brew --prefix openssl` --with-readline-
 require_brew ruby
 # set zsh as the user login shell
 CURRENTSHELL=$(dscl . -read /Users/$USER UserShell | awk '{print $2}')
-if [[ "$CURRENTSHELL" != "/usr/local/bin/zsh" ]]; then
-  bot "setting newer homebrew zsh (/usr/local/bin/zsh) as your shell (password required)"
-  # sudo bash -c 'echo "/usr/local/bin/zsh" >> /etc/shells'
-  # chsh -s /usr/local/bin/zsh
-  sudo dscl . -change /Users/$USER UserShell $SHELL /usr/local/bin/zsh > /dev/null 2>&1
+if [[ "$CURRENTSHELL" != "${HOMEBREW_PREFIX}/bin/zsh" ]]; then
+  bot "setting newer homebrew zsh (${HOMEBREW_PREFIX}/bin/zsh) as your shell (password required)"
+  # sudo bash -c 'echo "${HOMEBREW_PREFIX}/bin/zsh" >> /etc/shells'
+  # chsh -s ${HOMEBREW_PREFIX}/bin/zsh
+  sudo dscl . -change /Users/$USER UserShell $SHELL ${HOMEBREW_PREFIX}/bin/zsh > /dev/null 2>&1
   ok
 fi
 
@@ -317,6 +319,7 @@ if [[ $response =~ (y|yes|Y) ]];then
 fi
 
 brew tap adoptopenjdk/openjdk
+ok
 
 # if [[ -d "/Library/Ruby/Gems/2.0.0" ]]; then
 #   running "Fixing Ruby Gems Directory Permissions"
