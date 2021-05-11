@@ -257,6 +257,32 @@ if [[ ! -d "./oh-my-zsh/custom/themes/powerlevel9k" ]]; then
   git clone https://github.com/bhilburn/powerlevel9k.git oh-my-zsh/custom/themes/powerlevel9k
 fi
 
+bot "Python"
+read -r -p "install python within a pyenv environment? [y|N] " response
+if [[ $response =~ (y|yes|Y) ]]; then
+  bot "installing pyenv and python..."
+  mkdir -p "/Users/$USER/bin"
+  cat > "/Users/$USER/bin/brew" <<'EOF'
+#!/usr/bin/env sh
+# check if pyenv is available
+if which pyenv >/dev/null 2>&1; then
+  /usr/bin/env PATH="${PATH//$(pyenv root)\/shims:/}" ${HOMEBREW_PREFIX}/bin/brew "$@"
+else
+  ${HOMEBREW_PREFIX}/bin/brew "$@"
+fi
+EOF
+  chmod +x "/Users/$USER/bin/brew"
+
+  require_brew pyenv
+
+  # Update local environemnt
+  eval "$(pyenv init -)"
+
+  # Install and set python 3.9.4 as default
+  pyenv install --skip-existing 3.9.4
+  pyenv global 3.9.4
+fi
+
 bot "Dotfiles Setup"
 read -r -p "symlink ./homedir/* files in ~/ (these are the dotfiles)? [y|N] " response
 if [[ $response =~ (y|yes|Y) ]]; then

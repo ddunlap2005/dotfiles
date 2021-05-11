@@ -103,3 +103,13 @@ function require_nvm() {
     fi
     ok
 }
+
+function require_pip() {
+    running "python -m pip install $1"
+    python -m pip install $1
+    if [[ $? != 0 ]]; then
+        error "failed to install $1! aborting..."
+        # exit -1
+    fi
+    ok
+}
