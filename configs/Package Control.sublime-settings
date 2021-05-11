@@ -1,0 +1,26 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Ansible",
+		"BracketHighlighter",
+		"GitGutter",
+		"MagicPython",
+		"Markdown Extended",
+		"Package Control",
+		"SideBarEnhancements",
+		"SingleTrailingNewLine",
+		"SublimeGit",
+		"SublimeLinter",
+		"SublimeLinter-annotations",
+		"SublimeLinter-contrib-ansible-lint",
+		"SublimeLinter-flake8",
+		"SublimeLinter-javac",
+		"SublimeLinter-json",
+		"SublimeLinter-pycodestyle",
+		"TrailingSpaces"
+	]
+}

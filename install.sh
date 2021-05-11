@@ -1235,6 +1235,14 @@ bot "SizeUp.app"
 #running "Don’t show the preferences window on next start"
 #defaults write com.irradiatedsoftware.SizeUp ShowPrefsOnNextStart -bool false;ok
 
+###############################################################################
+bot "SublimeText"                                                                #
+###############################################################################
+
+running "Install Sublime Text settings"
+cp -r configs/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text*/Packages/User/Preferences.sublime-settings 2> /dev/null
+wget https://packagecontrol.io/Package%20Control.sublime-package --directory-prefix ~/Library/Application\ Support/Sublime\ Text*/Installed\ Packages/
+
 killall cfprefsd
 
 open /Applications/iTerm.app
