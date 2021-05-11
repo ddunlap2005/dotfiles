@@ -41,7 +41,6 @@ module.exports = {
     'openconnect',
     'p7zip',
     'pandoc',
-    'pyenv',
     'reattach-to-user-namespace',
     // better/more recent version of screen
     'homebrew/dupes/screen',
@@ -147,4 +146,13 @@ module.exports = {
     //com.app77.pwsafemac (4.17)
     //'520993579',
   ],
+  pip: [
+    'GitPython',
+    'jsonschema',
+    'packaging',
+    'pandoc-latex-environment',
+    'python-dateutil',
+    'PyYAML',
+    'versioning'
+  ]
 };
