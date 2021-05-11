@@ -1,4 +1,5 @@
 #My Scripts
+export PATH=$HOME/bin:$PATH
 #export PATH=$PATH:.
 #export PATH=$PATH:~/.dotfiles/scripts
 
@@ -10,3 +11,8 @@
 
 # The next line enables shell command completion for gcloud.
 #source "/Users/$(whoami)/Downloads/google-cloud-sdk/completion.zsh.inc"
+
+# Python
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
