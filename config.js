@@ -136,7 +136,7 @@ module.exports = {
   ],
   mas: [
     //com.apple.dt.Xcode (10.2.1)
-    '497799835',
+    //'497799835',
     //com.if.Amphetamine (4.1.6)
     //'937984704',
     //net.shinyfrog.bear (1.6.15)
@@ -145,6 +145,12 @@ module.exports = {
     //'540348655',
     //com.app77.pwsafemac (4.17)
     //'520993579',
+    // 1Blocker: Ad Blocker & Privacy (4.0.1)
+    '1365531024',
+    // Amphetamine (5.2.1)
+    '937984704',
+    // Parcel - Delivery Tracking (7.0.1)
+    '639968404',
   ],
   pip: [
     'GitPython',

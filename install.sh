@@ -410,12 +410,12 @@ ok
 #   0 = off
 #   1 = on for specific sevices
 #   2 = on for essential services
-#sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
+sudo defaults write /Library/Preferences/com.apple.alf globalstate -int 1
 
 # Enable firewall stealth mode (no response to ICMP / ping requests)
 # Source: https://support.apple.com/guide/mac-help/use-stealth-mode-to-keep-your-mac-more-secure-mh17133/mac
 #sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -int 1
-#sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -int 1
+sudo defaults write /Library/Preferences/com.apple.alf stealthenabled -int 1
 
 # Enable firewall logging
 #sudo defaults write /Library/Preferences/com.apple.alf loggingenabled -int 1
@@ -448,8 +448,8 @@ ok
 # Disable remote apple events
 #sudo systemsetup -setremoteappleevents off
 
-# Disable remote login
-#sudo systemsetup -setremotelogin off
+# Enable remote login
+sudo systemsetup -setremotelogin on
 
 # Disable wake-on modem
 #sudo systemsetup -setwakeonmodem off
@@ -468,7 +468,7 @@ ok
 #sudo defaults write /Library/Preferences/com.apple.loginwindow RetriesUntilHint -int 0
 
 # Disable guest account login
-#sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
+sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
 
 # Automatically lock the login keychain for inactivity after 6 hours
 #security set-keychain-settings -t 21600 -l ~/Library/Keychains/login.keychain
@@ -610,7 +610,7 @@ running "Set standby delay to 24 hours (default is 1 hour)"
 sudo pmset -a standbydelay 86400;ok
 
 #running "Disable the sound effects on boot"
-#sudo nvram SystemAudioVolume=" ";ok
+sudo nvram SystemAudioVolume=" ";ok
 
 #running "Menu bar: disable transparency"
 #defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false;ok
@@ -635,8 +635,8 @@ sudo pmset -a standbydelay 86400;ok
 running "Set sidebar icon size to medium"
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2;ok
 
-#running "Always show scrollbars"
-#defaults write NSGlobalDomain AppleShowScrollBars -string "Always";ok
+running "Show scrollbars only WhenScrolling"
+defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling";ok
 # Possible values: `WhenScrolling`, `Automatic` and `Always`
 
 running "Increase window resize speed for Cocoa applications"
@@ -719,8 +719,8 @@ bot "Trackpad, mouse, keyboard, Bluetooth accessories, and input"
 #running "Increase sound quality for Bluetooth headphones/headsets"
 #defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40;ok
 
-#running "Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
-#defaults write NSGlobalDomain AppleKeyboardUIMode -int 3;ok
+running "Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3;ok
 
 #running "Use scroll gesture with the Ctrl (^) modifier key to zoom"
 #defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
@@ -785,8 +785,8 @@ running "Set Home as the default location for new Finder windows"
 defaults write com.apple.finder NewWindowTarget -string "PfLo"
 defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/";ok
 
-running "Show hidden files by default"
-defaults write com.apple.finder AppleShowAllFiles -bool true;ok
+running "Hide hidden files by default"
+defaults write com.apple.finder AppleShowAllFiles -bool false;ok
 
 running "Show all filename extensions"
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true;ok
@@ -843,8 +843,11 @@ defaults write com.apple.finder EmptyTrashSecurely -bool true;ok
 
 # Issue on macOS Mojave, for more info
 # check https://github.com/mathiasbynens/dotfiles/issues/865
-# running "Show the ~/Library folder"
-# chflags nohidden ~/Library;ok
+running "Show the ~/Library folder"
+chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library;ok
+
+running "Show the /Volumes folder"
+sudo chflags nohidden /Volumes
 
 running "Expand the following File Info panes: “General”, “Open with”, and “Sharing & Permissions”"
 defaults write com.apple.finder FXInfoPanesExpanded -dict \
@@ -912,8 +915,8 @@ defaults write com.apple.dock mru-spaces -bool false;ok
 #defaults write com.apple.dock hide-mirror -bool true;ok
 
 # defaults write com.apple.dock ResetLaunchPad -bool TRUE
-running "Reset Launchpad, but keep the desktop wallpaper intact"
-find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete;ok
+#running "Reset Launchpad, but keep the desktop wallpaper intact"
+#find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete;ok
 
 # You can change the layout of your Launchpad
 # Use the following command in Terminal to change the layout of Launchpad.
@@ -989,6 +992,12 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 
 running "Add a context menu item for showing the Web Inspector in web views"
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true;ok
+
+running "Disable AutoFill"
+#defaults write com.apple.Safari AutoFillFromAddressBook -bool false
+defaults write com.apple.Safari AutoFillPasswords -bool false
+defaults write com.apple.Safari AutoFillCreditCardData -bool false
+#defaults write com.apple.Safari AutoFillMiscellaneousForms -bool false
 
 ###############################################################################
 bot "Configuring Mail"
@@ -1115,8 +1124,8 @@ bot "Time Machine"
 running "Prevent Time Machine from prompting to use new hard drives as backup volume"
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true;ok
 
-# running "Disable local Time Machine backups"
-# hash tmutil &> /dev/null && sudo tmutil disablelocal;ok
+running "Disable local Time Machine backups"
+hash tmutil &> /dev/null && sudo tmutil disablelocal;ok
 
 ###############################################################################
 bot "Activity Monitor"
