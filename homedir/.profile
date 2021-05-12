@@ -1,7 +1,8 @@
 #############################################################
 # Generic configuration that applies to all shells
 #############################################################
-eval "$(/opt/homebrew/bin/brew shellenv)"
+test -e /usr/local/bin/brew && eval "$(/usr/local/bin/brew shellenv)"
+test -e /opt/homebrew/bin/brew && eval "$(/opt/homebrew/bin/brew shellenv)"
 
 test -e ~/.shellvars && source ~/.shellvars
 test -e ~/.shellfn && source ~/.shellfn
