@@ -1,6 +1,9 @@
 [user]
   name = GITHUBFULLNAME
   email = GITHUBEMAIL
+[wrgit]
+  username = WRGITUSERNAME
+  autoupdate = true
 [github]
   # https://github.com/blog/180-local-github-config
   user = GITHUBUSER
