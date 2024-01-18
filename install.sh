@@ -212,8 +212,17 @@ if [[ $? != 0 ]]; then
     error "unable to install homebrew, script $0 abort!"
     exit 2
   fi
-  (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/${whoami}/.zprofile
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+  UNAME_MACHINE="$(/usr/bin/uname -m)"
+  if [[ "${UNAME_MACHINE}" == "arm64" ]]
+  then
+    # On ARM macOS, this script installs to /opt/homebrew only
+    HOMEBREW_PREFIX="/opt/homebrew"
+  else
+    # On Intel macOS, this script installs to /usr/local only
+    HOMEBREW_PREFIX="/usr/local"
+  fi
+  (echo; echo "eval \"\$(${HOMEBREW_PREFIX}/bin/brew shellenv)\"") >> /Users/${whoami}/.zprofile
+    eval "$(${HOMEBREW_PREFIX}/bin/brew shellenv)"
   brew analytics off
 else
   ok
