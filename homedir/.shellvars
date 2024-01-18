@@ -2,6 +2,19 @@
 export EDITOR="vim"
 bindkey -v
 
+# Fix HOME and END keys
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+
+# Alt-backspace to remove last dir in path
+backward-kill-dir () {
+    local WORDCHARS=${WORDCHARS/\/}
+    zle backward-kill-word
+    zle -f kill
+}
+zle -N backward-kill-dir
+bindkey '^[^?' backward-kill-dir
+
 #########################################################################
 # Temporary aliases useful for demos, other current projects
 #########################################################################
