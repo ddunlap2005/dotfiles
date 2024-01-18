@@ -51,33 +51,29 @@ module.exports = {
     'wget --enable-iri'
   ],
   cask: [
-    //'adium',
-    //'amazon-cloud-drive',
-    //'atom',
-    // 'box-sync',
-    //'comicbooklover',
-    //'diffmerge',
-    'docker', // docker for mac
-    //'dropbox',
-    //'evernote',
-    'flux',
-    'gpg-suite',
-    //'ireadfast',
+    'adobe-acrobat-reader',
+    'airbuddy',
+    'balenaetcher',
+    'bartender',
+    'cardhop',
+    'cleanmymac',
+    'daisydisk',
+    'fantastical',
+    #'filebot',
+    'firefox',
+    'google-chrome',
     'iterm2',
-    'little-snitch',
-    // 'macbreakz',
-    'micro-snitch',
-    // 'signal',
-    //'macvim',
-    'sizeup',
-    //'sketchup',
-    'slack',
-    // 'the-unarchiver',
-    //'torbrowser',
-    //'transmission',
-    'visual-studio-code',
-    //'vlc',
-    'xquartz'
+    'lastpass',
+    'messenger',
+    'microsoft-office',
+    'screens',
+    'screens-connect',
+    'sonos',
+    'sublime-text',
+    'temurin',
+    'the-unarchiver',
+    'vlc',
+    'zoom'
   ],
   gem: [
   ],
@@ -86,24 +82,11 @@ module.exports = {
     'buzzphrase',
     'eslint',
     'instant-markdown-d',
-    // 'generator-dockerize',
-    // 'gulp',
     'npm-check-updates',
     'prettyjson',
     'trash',
     'vtop'
-    // ,'yo'
   ],
   mas: [
-    //com.apple.dt.Xcode (10.2.1)
-    '497799835',
-    //com.if.Amphetamine (4.1.6)
-    //'937984704',
-    //net.shinyfrog.bear (1.6.15)
-    //'1091189122',
-    //com.monosnap.monosnap (3.5.8)
-    //'540348655',
-    //com.app77.pwsafemac (4.17)
-    //'520993579',
   ],
 };
